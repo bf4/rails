@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# Example:
+#   code_tools-profile activesupport/lib/active_support.rb [ruby-prof mode] [ruby-prof printer]
+
+require 'code_tools'
+require 'code_tools/profiler'
+
+if (filename = ARGV.shift)
+  path = File.expand_path(filename)
+  mode = ARGV.shift
+  CodeTools::Profiler.new(path, mode).profile_requires
+else
+  STDERR.puts "No file path entered. Usage is code_tools-profile path/to/file.rb [ruby-prof mode] [ruby-prof printer]"
+end
